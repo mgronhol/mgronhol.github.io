@@ -1,7 +1,80 @@
 <!DOCTYPE html>
 <head>
-<title>Fast string compare</title>
+<title>Comparing strings faster</title>
 </head>
 <body>
+
+<h1>Speeding up string compare and sorting (compared to vanilla strcmp)</h1>
+
+<h2>Motivation</h2>
+<p>
+Strcmp and its variants are crucial part of nearly every software project ever made. Unless the project is written in C, the useage of strcmp is implicit i.e. it is used by the standard library or the platform underneath (for example Python, it is used by the interpreter). Usually the string comparing functions are not questioned and are taken as given when designing systems. When optimizing the system performace it is easy to neglect strcmp &amp; co. and because of this, a faster implementation of strcmp yields unexpected gains even on a somewhat highly optimized systems.  </p>
+
+<p>A large amount of effort is put into devising more and more efficient string sorting algorithms etc. These optimizations reduce the computational complexity of the sorting and therefore make it faster especially when the amount of sorted strings is very large. Making the underlying string comparing faster doesn't give such far-reaching results, but it increases the speed of current highly optimized algorithms without touching the algorithm itself. </p>
+
+
+<p>This is why even a modest increase in strcmp speed is useful, because it speeds up the system in various places and situations and because it can be put to use without greatly modifying the current codebase.</p>
+
+<h2>The Code</h2>
+
+<p>The proposed simple algorithm is:</p>
+
+<script src="https://gist.github.com/mgronhol/018e17c118ccf2144744.js"></script>
+<p>
+There is nothing new in this algorithm, it is only engineered to be faster than the out-of-the-box strncmp from GNU libc library.
+</p>
+
+
+<h2>Comparing strings</h2>
+
+<p>
+A set of test runs against the strncmp was done using a C program that generated a set of random strings (lengths 16 - 32k chars) and the compare functions were timed when an all-to-all compare loop was executed. Results reported here are averages over 512 runs. All programs were complied using gcc version 4.4.6 and with -O3 flag.
+</p>
+<pre>
+<b>Results from 32bit EC2 instance: </b>
+
+<b>Test 1:</b> Comparing 2049 strings (2200 chars each) against each other
+fast_compare: 0.05 s
+strncmp:      1.16 s
+
+fastcmp vs strncmp: 23.0x
+
+
+<b>Test 2:</b> Comparing 4096 strings (2200 chars each) against each other
+fast_compare: 2.88 s
+strncmp:      127.21 s
+
+fastcmp vs strncmp: 44.2x
+
+</pre>
+
+
+<h2>Sorting strings</h2>
+<p>
+A common application where string comparing is used is sorting strings (for example in alphabetical order). A set of test runs were conducted with a C program that sorted randomly generated strings (same set for each) and libc's qsort was used as the sorting function. Same compiler options and averages are used as in the previous test setup.
+</p>
+<pre>
+<b>Results from 32bit EC2 instance: </b>
+
+<b>Test 1:</b> Sorting 16384 strings (8192 chars each)
+fast_compare: 5.956 ms
+strncmp:      9.977 ms
+
+fastcmp vs strncmp: 1.68x
+
+<b>Test 2:</b> Sorting 32768 strings (1024 chars each)
+fast_compare: 12.715 ms
+strncmp:      21.470 ms
+
+fastcmp vs strncmp: 1.69x
+
+</pre>
+<p>
+Results from sorting are not as dramatic as in raw string compare mainly because the actual amount of string compares is quite low as (almost) all sorting algorithms try to do as little compares as possible (lower algorithmic complexity).
+</p>
+
+<p class="author">
+Markus Grönholm, <a href="http://alshain.fi"> Alshain ltd.</a>, 2014
+</p>
 </body>
 </html>
