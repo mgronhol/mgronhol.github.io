@@ -42,18 +42,35 @@ A set of test runs against the strncmp was done using a C program that generated
 <pre>
 <b>Results from 32bit EC2 instance: </b>
 
-<b>Test 1:</b> Comparing 2049 strings (2200 chars each) against each other
-fast_compare: 0.05 s
-strncmp:      1.16 s
+<b>Test 1:</b> Comparing 20000 strings (20 chars each) against each other
+fast_compare: 1.19 s
+strncmp:      3.58 s
 
-fastcmp vs strncmp: 23.0x
+fastcmp vs strncmp: 3.0x
 
 
-<b>Test 2:</b> Comparing 4096 strings (2200 chars each) against each other
-fast_compare: 2.88 s
-strncmp:      127.21 s
+<b>Test 2:</b> Comparing 20000 strings (2000 chars each) against each other
+fast_compare: 18.15 s
+strncmp:      187.74 s
 
-fastcmp vs strncmp: 44.2x
+fastcmp vs strncmp: 10.3x
+
+<b>Result from 64bit Intel Pentium 4 @ 3.4Ghz</b>
+
+<b>Test 1:</b> Comparing 20000 strings (20 chars each) against each other
+fast_compare: 2.44 s
+strncmp:      7.47 s
+
+fastcmp vs strncmp: 3.1x
+
+
+<b>Test 2:</b> Comparing 20000 strings (2000 chars each) against each other
+fast_compare: 29.20 s
+strncmp:      45.31 s
+
+fastcmp vs strncmp: 1.6x
+
+
 
 </pre>
 
@@ -76,6 +93,16 @@ fast_compare: 12.715 ms
 strncmp:      21.470 ms
 
 fastcmp vs strncmp: 1.69x
+
+<b>Result from 64bit Intel Pentium 4 @ 3.4Ghz</b>
+
+<b>Test 1:</b> Sorting 32768 strings (20 chars each)
+fast_compare: 19.193 ms
+strncmp:      25.704 ms
+
+fastcmp vs strncmp: 1.34x
+
+
 
 </pre>
 <p>
