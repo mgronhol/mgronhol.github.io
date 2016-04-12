@@ -1,0 +1,11 @@
+ 0) Sano EI usb:lle
+ 1) Ainoastaan C, C++, Ada ja FreePascal ovat luotettavia kieliä järjestelmien rungoksi
+ 2) Ei käyttöjärjestelmiä! Jos on pakko niin silloin alustaksi RTEMS, FreeRTOS, FreeDos tai äärimilleen pelkistetty linux
+ 3) Joko ihan aikuisten oikeita x86/64 pc:itä tai tavallisia sulautettuja järjestelmiä. EI LINUX-LÄTTYJÄ, jotka rullaa ARM:lla (raspberry pi, beaglebone black, pandaboard etc)
+ 4) "Weakly coupled systems" aiheuttaa vain harmaita hiuksia ja ongelmia asynkronisuuden & ajoitusten kanssa
+ 5) Tee itse jos voit, älä käytä valmista (COTS) (aika hyvä nyrkkisääntö, nimittäin 
+      a) keskimäärin koodarit on kuraa 
+      b) "kaupasta ostetuttujen" systeemien & kirjastojen suunnitteluparametrina on äärimmäisen harvoin luotettavuus)
+ 5a) Ei mielellään koskaan enää kaupasta ostettuja moottoriohjaimia (elleivät ole osoittautuneet toimiviksi)
+ 5b) Akseleihin AINA enkooderit, ei mitään open loop -kuraa
+ 6) Maadoitukset on aina päin *******
