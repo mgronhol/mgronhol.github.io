@@ -415,6 +415,34 @@ elem.addEventListener("keyup", function(e){
 
 
 
+document.getElementById("left-button").addEventListener("mousedown", function(e){
+    torque = -1.0;     
+});
+
+document.getElementById("left-button").addEventListener("mouseup", function(e){
+    torque = 0.0;     
+});
+
+document.getElementById("right-button").addEventListener("mousedown", function(e){
+    torque = 1.0;     
+});
+
+document.getElementById("right-button").addEventListener("mouseup", function(e){
+    torque = 0.0;     
+});
+
+
+
+document.getElementById("center-button").addEventListener("mousedown", function(e){
+    squeeze = 1;
+});
+
+document.getElementById("center-button").addEventListener("mouseup", function(e){
+    squeeze = 0;     
+});
+
+
+
 
 function firstFrame( timestamp ){
     _prev_frame_timestamp = timestamp;

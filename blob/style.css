@@ -1,8 +1,23 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 }
 #gfx {
     border: 1px solid black;
+}
+
+#horiz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+#button2 {
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    padding: 1em;
+    margin: 1em;
 }
