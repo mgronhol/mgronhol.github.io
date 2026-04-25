@@ -419,6 +419,14 @@ document.getElementById("left-button").addEventListener("pointerdown", function(
     torque = -1.0;     
 });
 
+document.getElementById("left-button").addEventListener("touchstart", function(e){
+    torque = -1.0;  
+    e.preventDefault();
+    e.stopPropagation();     
+});
+
+
+
 document.getElementById("left-button").addEventListener("pointerup", function(e){
     torque = 0.0;     
 });
@@ -426,6 +434,15 @@ document.getElementById("left-button").addEventListener("pointerup", function(e)
 document.getElementById("right-button").addEventListener("pointerdown", function(e){
     torque = 1.0;     
 });
+
+
+
+document.getElementById("right-button").addEventListener("touchstart", function(e){
+    torque = 1.0;     
+    e.preventDefault();
+    e.stopPropagation();     
+});
+
 
 document.getElementById("right-button").addEventListener("pointerup", function(e){
     torque = 0.0;     
@@ -436,6 +453,13 @@ document.getElementById("right-button").addEventListener("pointerup", function(e
 document.getElementById("center-button").addEventListener("pointerdown", function(e){
     squeeze = 1;
 });
+
+document.getElementById("center-button").addEventListener("touchstart", function(e){
+    squeeze = 1;
+    e.preventDefault();
+    e.stopPropagation();     
+});
+
 
 document.getElementById("center-button").addEventListener("pointerup", function(e){
     squeeze = 0;     
@@ -448,7 +472,6 @@ function firstFrame( timestamp ){
     _prev_frame_timestamp = timestamp;
     main_loop( timestamp );
 }
-
 
 
 

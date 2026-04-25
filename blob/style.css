@@ -20,4 +20,5 @@ body {
 button {
     padding: 1em;
     margin: 1em;
+    touch-action: none;
 }
