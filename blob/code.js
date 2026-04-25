@@ -371,10 +371,17 @@ function main_loop( timestamp ){
     
     const centre = handle_physics( dt );
 
-
-
-
     render( centre.x, centre.y );
+
+
+    if( centre.y > 2000 ){
+
+        nodes.length = 0;
+        links.length = 0;
+        world.length = 0;
+        init();
+    }
+
     requestAnimationFrame( main_loop );
     
 }
@@ -474,5 +481,5 @@ function firstFrame( timestamp ){
 }
 
 
-
+ 
 requestAnimationFrame( firstFrame );
