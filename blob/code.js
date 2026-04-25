@@ -415,29 +415,29 @@ elem.addEventListener("keyup", function(e){
 
 
 
-document.getElementById("left-button").addEventListener("mousedown", function(e){
+document.getElementById("left-button").addEventListener("pointerdown", function(e){
     torque = -1.0;     
 });
 
-document.getElementById("left-button").addEventListener("mouseup", function(e){
+document.getElementById("left-button").addEventListener("pointerup", function(e){
     torque = 0.0;     
 });
 
-document.getElementById("right-button").addEventListener("mousedown", function(e){
+document.getElementById("right-button").addEventListener("pointerdown", function(e){
     torque = 1.0;     
 });
 
-document.getElementById("right-button").addEventListener("mouseup", function(e){
+document.getElementById("right-button").addEventListener("pointerup", function(e){
     torque = 0.0;     
 });
 
 
 
-document.getElementById("center-button").addEventListener("mousedown", function(e){
+document.getElementById("center-button").addEventListener("pointerdown", function(e){
     squeeze = 1;
 });
 
-document.getElementById("center-button").addEventListener("mouseup", function(e){
+document.getElementById("center-button").addEventListener("pointerup", function(e){
     squeeze = 0;     
 });
 
