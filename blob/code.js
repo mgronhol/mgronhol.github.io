@@ -10,8 +10,10 @@ var torque = 0;
 var squeeze = 0;
 
 
+var t_phys_loop = 0;
+
 const GRAVITY = 15.5;
-const DRAG = 0.99;
+const DRAG = 0.995;
 
 
 function dist( posA, posB ){
@@ -87,7 +89,7 @@ class Link {
         const uv = get_unit_vector( this.nodeA.pos, this.nodeB.pos );
 
 
-        const damp = (delta_l - this.prev_dl) * 0.05 / dt * (1 + 5.75*squeeze);
+        const damp = (delta_l - this.prev_dl) * 0.075 / dt * (1 + 5.75*squeeze);
 
         this.prev_dl = delta_l;
 
@@ -227,6 +229,9 @@ function render(offset_x, offset_y){
     const canvas = document.getElementById("gfx");
     const ctx = canvas.getContext("2d");
 
+    canvas.width = 0.8 * window.innerWidth;
+    canvas.height = 0.75 * window.innerHeight;
+
     const cW = canvas.width / 2;
     const cH = canvas.height / 2;
     
@@ -325,7 +330,9 @@ function init(){
     for( let i = 0 ; i < nodes.length - 1 ; i += 1 ){
         for( let j = i+1; j < nodes.length ; j += 1 ){
             const d = dist( nodes[i].pos, nodes[j].pos );
-            links.push( new Link( nodes[i], nodes[j], d, 1.0 ) );
+            if( d < 80 ) {
+                links.push( new Link( nodes[i], nodes[j], d, 2.0 ) );
+                }
         }
     }
 
@@ -369,7 +376,18 @@ function main_loop( timestamp ){
     _prev_frame_timestamp = timestamp;
 
     
-    const centre = handle_physics( dt );
+    const t_phys_start = Date.now();
+    let centre;
+    centre = handle_physics( dt / 4 );
+    centre = handle_physics( dt / 4 );
+    centre = handle_physics( dt / 4 );
+    centre = handle_physics( dt / 4 );
+
+    centre = handle_physics( dt / 4 );
+    centre = handle_physics( dt / 4 );
+    centre = handle_physics( dt / 4 );
+
+    t_phys_loop = (Date.now()) - t_phys_start;
 
     render( centre.x, centre.y );
 
