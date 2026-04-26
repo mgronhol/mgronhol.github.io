@@ -378,14 +378,9 @@ function main_loop( timestamp ){
     
     const t_phys_start = Date.now();
     let centre;
-    centre = handle_physics( dt / 4 );
-    centre = handle_physics( dt / 4 );
-    centre = handle_physics( dt / 4 );
-    centre = handle_physics( dt / 4 );
-
-    centre = handle_physics( dt / 4 );
-    centre = handle_physics( dt / 4 );
-    centre = handle_physics( dt / 4 );
+    for( let i = 0 ; i < 9 ; i += 1 ){
+        centre = handle_physics( dt / 4 );
+    }
 
     t_phys_loop = (Date.now()) - t_phys_start;
 
