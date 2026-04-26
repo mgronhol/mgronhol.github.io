@@ -145,8 +145,8 @@ class WSphere {
             node.vel.y += project_vy*1.0;
 
             
-            node.F.x -= -project_nvx*3.75;
-            node.F.y -= -project_nvy*3.75;
+            //node.F.x -= -project_nvx*3.75;
+            //node.F.y -= -project_nvy*3.75;
             
 
 
